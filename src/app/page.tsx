@@ -1,5 +1,9 @@
-import Image from "next/image";
+import TeamPage from "@/components/teams";
 
 export default function Home() {
-  return <div>App</div>;
+  return (
+    <div>
+      <TeamPage />
+    </div>
+  );
 }

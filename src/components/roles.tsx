@@ -1,4 +1,5 @@
-// components/roles.tsx
+"use client";
+
 import {
   Card,
   CardHeader,
@@ -9,6 +10,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AlertCircle } from "lucide-react";
+import { useState } from "react";
+import { RolesDialog } from "./partials/roles-dialog";
 
 const roles = [
   {
@@ -44,6 +47,11 @@ const roles = [
 ];
 
 export function Roles() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => setIsDialogOpen(true);
+  const closeDialog = () => setIsDialogOpen(false);
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -51,7 +59,9 @@ export function Roles() {
           <h1 className="text-2xl font-bold">Authorisation Roles</h1>
           <p className="text-sm text-muted-foreground">Search groups</p>
         </div>
-        <Button variant="outline">+ Create a new role</Button>
+        <Button variant="outline" onClick={openDialog}>
+          + Create a new role
+        </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -68,7 +78,8 @@ export function Roles() {
                     {role.users} User{role.users !== 1 ? "s" : ""}
                   </Badge>
                   <Badge variant="secondary">
-                    {role.permissions} Permission{role.permissions !== 1 ? "s" : ""}
+                    {role.permissions} Permission
+                    {role.permissions !== 1 ? "s" : ""}
                   </Badge>
                 </div>
                 <Button variant="ghost" size="sm" className="text-destructive">
@@ -80,6 +91,8 @@ export function Roles() {
           </Card>
         ))}
       </div>
+
+      <RolesDialog isOpen={isDialogOpen} closeDialog={closeDialog} />
     </div>
   );
 }

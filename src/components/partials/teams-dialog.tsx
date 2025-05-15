@@ -14,6 +14,7 @@ interface User {
   _id?: string;
   firstName: string;
   lastName: string;
+  permissions: string;
   role: string;
   email: string;
 }
@@ -34,6 +35,7 @@ const TeamsDialog: React.FC<TeamDialogProps> = ({
   const [formData, setFormData] = useState<User>({
     firstName: "",
     lastName: "",
+    permissions: "",
     role: "",
     email: "",
   });
@@ -45,6 +47,7 @@ const TeamsDialog: React.FC<TeamDialogProps> = ({
       setFormData({
         firstName: "",
         lastName: "",
+        permissions: "",
         role: "",
         email: "",
       });
@@ -75,6 +78,7 @@ const TeamsDialog: React.FC<TeamDialogProps> = ({
     setFormData({
       firstName: "",
       lastName: "",
+      permissions: "",
       role: "",
       email: "",
     });
